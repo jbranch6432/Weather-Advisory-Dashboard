@@ -13,15 +13,11 @@ searchButton.addEventListener ("click", function(event) {
     //saves city search to localStorage
     var newSearch = newCity.value.trim();
 
-    var cityObj = {
-        newCities: newSearch
-    };
-
     //parse the data from localStorage, if no data it will return an empty array
     var cityList = JSON.parse(localStorage.getItem("city")) || [];
 
     //add city to array
-    cityList.push(cityObj);
+    cityList.push(newSearch);
 
     //save city array as a string
     localStorage.setItem("city", JSON.stringify(cityList));
@@ -32,28 +28,35 @@ document.getElementById('city-search-button').value = window.localStorage['displ
     getApi();
     console.log("submit clicked");
 });
+let cityStored = JSON.parse(localStorage.getItem('city')) || [];
 
-// //save City search to localStorage
-let buttonsLength = 0;
+for (var i=0; i<cityStored.length; i++) {
+    var city = cityStored[i];
+    var cityButton = document.createElement('button');
+    cityButton.innerHTML = city;
+    document.getElementById('buttonlinks').appendChild(cityButton);
+}
+// // //save City search to localStorage
+// let buttonsLength = 0;
 
-document.getElementById('city-list-button').addEventListener('click', function () {
-   createButton();
-   buttonsLength++;
-   localStorage.setItem('buttonsLength', buttonsLength)
- });
+// document.getElementById('city-list-button').addEventListener('click', function () {
+//    createButton();
+//    buttonsLength++;
+//    localStorage.setItem('buttonsLength', buttonsLength)
+//  });
 
- function createButton() {
-   var button = document.createElement('button');
-   button.innerHTML = 'click me';
-   document.getElementById('buttonlinks').appendChild(button);
- }
+//  function createButton() {
+//    var button = document.createElement('button');
+//    button.innerHTML = 'click me';
+//    document.getElementById('buttonlinks').appendChild(button);
+//  }
 
- window.addEventListener('load', (event) => {
-   buttonsLength = Number(localStorage.getItem('buttonsLength')) || 0;
-   for (let i = 0; i < buttonsLength; i++) {
-     createButton();
-   }
-});
+//  window.addEventListener('load', (event) => {
+//    buttonsLength = Number(localStorage.getItem('buttonsLength')) || 0;
+//    for (let i = 0; i < buttonsLength; i++) {
+//      createButton();
+//    }
+// });
 
 const showlinks = document.getElementById('city-list-button')
 
