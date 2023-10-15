@@ -15,9 +15,9 @@
     <div class="row p-2">
         <div class="col-3 col-md-3"><b>Search for a City:</b>
             <div class="d-grid gap-2 d-md-flex justify-content-left p-3">
-                <div class="input-group col-4" id="city-data">
-                    <input type="text" class="form-control" placeholder="City Name">
-                    <button type="button" class="btn btn-warning btn-lg" >Search</button>
+                <div class="input-group col-4">
+                    <input type="text" class="form-control" placeholder="City Name" id="city-name">
+                    <button type="button" class="btn btn-warning btn-lg" id="city-search-button">Search</button>
                 </div>
             </div>
         </div>
@@ -29,13 +29,13 @@
               <h6 class="card-subtitle mb-2 text-body-secondary" id="current-wind">Wind</h6>
               <h6 class="card-subtitle mb-2 text-body-secondary" id="current-hum">Humidity</h6>
         </div>
-          
           <!--Add styling to h4 tag-->
         <div class="container text-left">
             <div>5-Day Forecast</div>
         </div>
-    <div class="container col-3 p-3">Search History
-        <button type="button" class="btn btn-outline-warning">City</button>
+    <div class="container col-3 p-3" id="">Search History
+        <button type="button" class="btn btn-outline-warning" id="city-list-button" onclick="myFunction">City</button>
+        <div id="buttonlinks"></div>
     </div>
     <div class="card mb-3 p-3" id="five" style="width: 15%" >
             <div id="card-body-1">
@@ -75,6 +75,8 @@
                         text
                     </div>
                     <div class="card-body">
+                        text
+                    </div>
                         text
                     </div>
                     <div class="card-body">
@@ -119,11 +121,8 @@
 </div>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-
     <script>dayjs().format()</script>
     <script src="./script.js"></script>
-
   </body>
 </html>
