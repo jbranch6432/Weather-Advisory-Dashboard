@@ -7,31 +7,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
   <body>
-    <div class="mx-auto p-5 container text-center" style="width: 100%">
+    <div>
+        <div class="mx-auto p-3 container text-center" style="width: 100%">
         <div class="row" style="background-color: #ffc107">
           <div class="col-12 p-4"><h1>Weather Dashboard</h1></div>
         </div>
     <div class="row p-2">
         <div class="col-3 col-md-3"><b>Search for a City:</b>
             <div class="d-grid gap-2 d-md-flex justify-content-left p-3">
-                <div class="input-group col-4">
-                    <input type="text" class="form-control" placeholder="Richmond">
+                <div class="input-group col-4" id="city-data">
+                    <input type="text" class="form-control" placeholder="City Name">
                     <button type="button" class="btn btn-warning btn-lg" >Search</button>
                 </div>
             </div>
         </div>
-        <div class="card col-9 p-3">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
-          </div>
+        <!-- Card to display city and currentDay -->
+        <div class="card" style="width: 18rem;">
+            <div class="card-body" id="currentDay"></div>
+              <h5 class="card-title" id="currentCity">City Icon</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary" id="current-temp">Temp</h6>
+              <h6 class="card-subtitle mb-2 text-body-secondary" id="current-wind">Wind</h6>
+              <h6 class="card-subtitle mb-2 text-body-secondary" id="current-hum">Humidity</h6>
+        </div>
+          
+          <!--Add styling to h4 tag-->
+        <div class="container text-left">
+            <div>5-Day Forecast</div>
+        </div>
     <div class="container col-3 p-3">Search History
         <button type="button" class="btn btn-outline-warning">City</button>
     </div>
-        <div class="card mb-3 p-3" style="width: 15%" >
+    <div class="card mb-3 p-3" id="five" style="width: 15%" >
             <div id="card-body-1">
                 <h5 class="card-title">Card 1</h5>
-                <h6 class="card-subtitle mb-2   text-body-secondary">Card subtitle</h6>
+                <img src="" alt="weather icon" class="w-icon">
                 <div class="card-body">
                     text
                 </div>
@@ -46,7 +55,7 @@
             <div class="card mb-3 p-3" style="width: 15%">
                 <div id="card-body-2">
                     <h5 class="card-title">Card 2</h5>
-                    <h6 class="card-subtitle mb-2   text-body-secondary">Card subtitle</h6>
+                    <img src="" alt="weather icon" class="w-icon">
                     <div class="card-body">
                         text
                     </div>
@@ -61,7 +70,7 @@
             <div class="card mb-3 p-3" style="width: 15%">
                 <div id="card-body-3">
                     <h5 class="card-title">Card 3</h5>
-                    <h6 class="card-subtitle mb-2   text-body-secondary">Card subtitle</h6>
+                    <img src="" alt="weather icon" class="w-icon">
                     <div class="card-body">
                         text
                     </div>
@@ -76,7 +85,7 @@
             <div class="card mb-3 p-3" style="width: 15%">
                 <div id="card-body-4">
                     <h5 class="card-title">Card 4</h5>
-                    <h6 class="card-subtitle mb-2   text-body-secondary">Card subtitle</h6>
+                    <img src="" alt="weather icon" class="w-icon">
                     <div class="card-body">
                         text
                     </div>
@@ -91,7 +100,7 @@
             <div class="card mb-3 p-3" style="width: 15%">
                 <div id="card-body-5">
                     <h5 class="card-title">Card 5</h5>
-                    <h6 class="card-subtitle mb-2   text-body-secondary">Card subtitle</h6>
+                    <img src="" alt="weather icon" class="w-icon">
                     <div class="card-body">
                         text
                     </div>
@@ -104,8 +113,17 @@
                 </div>
             </div>
         </div>
+    <div class="container-sm">
+        <img src="images/Skyline.jpg" alt="City Skyline Sunset" style="width: 100%; height: auto;">
     </div>
-      
+</div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
+    <script>dayjs().format()</script>
+    <script src="./script.js"></script>
+
   </body>
 </html>
