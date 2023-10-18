@@ -7,115 +7,96 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
   <body>
-    <div>
-        <div class="mx-auto p-3 container text-center" style="width: 100%">
-        <div class="row" style="background-color: #ffc107">
-          <div class="col-12 p-4"><h1>Weather Dashboard</h1></div>
-        </div>
-    <div class="row p-2">
-        <div class="col-3 col-md-3"><b>Search for a City:</b>
-            <div class="d-grid gap-2 d-md-flex justify-content-left p-3">
-                <div class="input-group col-4">
+    <div class="container">
+        <nav class="navbar bg-warning">
+            <div class="container-fluid ">
+                <span class="navbar-brand fs-2 mb-0 h1 mx-auto text-black">Weather Dashboard</span>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col-12 col-md-4 row">
+                <h2>Search for a city:</h2>
+                <div class="input-group mb-3 col-12">
                     <input type="text" class="form-control" placeholder="City Name" id="city-name">
                     <button type="button" class="btn btn-warning btn-lg" id="city-search-button">Search</button>
                 </div>
+                <h3>Search History</h3>
+                <p id="history" type="text"></p>
+                
             </div>
-        </div>
         <!-- Card to display city and currentDay -->
-        <div class="card" style="width: 18rem;">
-            <div class="card-body" id="currentDay"></div>
-              <h5 class="card-title" id="currentCity">City Icon</h5>
-              <h6 class="card-subtitle mb-2 text-body-secondary" id="current-temp">Temp</h6>
-              <h6 class="card-subtitle mb-2 text-body-secondary" id="current-wind">Wind</h6>
-              <h6 class="card-subtitle mb-2 text-body-secondary" id="current-hum">Humidity</h6>
+        <div class="col-12 col-md-8 row">
+            <div class="current border m-3 border-dark-subtle border-2 col-12">
+                <h2>
+                    <span id="currentDay">City Name</span> 
+                    <img id="weather-icon"/>
+                </h2>
+                <h2>
+                    <span id="current-date"></span> 
+                </h2>
+              
+                <p id="temp">Temp: </p>
+                <p id="wind">Wind: </p>
+                <p id="humid">Humidity: </p>
+            </div>
+            <div class="row">
+                <nav class="navbar bg-white">
+                    <div class="container-fluid">
+                        <span class="navbar-brand fs-3 mb-0 fw-bold">5-Day Forecast:</span>
+                    </div>
+                </nav>
+            </div>
+            <div class="forecast col-2 m-3">
+                <div id="Day-1">
+                    <p id="date-0"></p>
+                    <p id="icon-0"></p>
+                    <p id="temp-0"></p>
+                    <p id="wind-0"></p>
+                    <p id="humid-0"></p>
+                </div>
+            </div>
+            <div class="forecast col-2 m-auto">
+                <div id="Day-2">
+                    <p id="date-0"></p>
+                    <p id="icon-0"></p>
+                    <p id="temp-0"></p>
+                    <p id="wind-0"></p>
+                    <p id="humid-0"></p>
+                </div>
+            </div>
+            <div class="forecast col-2 m-auto">
+                <div id="Day-3">
+                    <p id="date-0"></p>
+                    <p id="icon-0"></p>
+                    <p id="temp-0"></p>
+                    <p id="wind-0"></p>
+                    <p id="humid-0"></p>
+                </div>
+            </div>
+            <div class="forecast col-2 m-auto">
+                <div id="Day-4">
+                    <p id="date-0"></p>
+                    <p id="icon-0"></p>
+                    <p id="temp-0"></p>
+                    <p id="wind-0"></p>
+                    <p id="humid-0"></p>
+                </div>
+            </div>
+            <div class="forecast col-2 m-auto">
+                <div id="Day-5">
+                    <p id="date-0"></p>
+                    <p id="icon-0"></p>
+                    <p id="temp-0"></p>
+                    <p id="wind-0"></p>
+                    <p id="humid-0"></p>
+                </div>
+            </div>
+            
         </div>
-          <!--Add styling to h4 tag-->
-        <div class="container text-left">
-            <div>5-Day Forecast</div>
-        </div>
-    <div class="container col-3 p-3" id="">Search History
-        <button type="button" class="btn btn-outline-warning" id="city-list-button" onclick="myFunction">City</button>
-        <div id="buttonlinks"></div>
     </div>
-    <div class="card mb-3 p-3" id="five" style="width: 15%" >
-            <div id="card-body-1">
-                <h5 class="card-title">Card 1</h5>
-                <img src="" alt="weather icon" class="w-icon">
-                <div class="card-body">
-                    text
-                </div>
-                <div class="card-body">
-                    text
-                </div>
-                <div class="card-body">
-                    text
-                </div>
-            </div>
-        </div>
-            <div class="card mb-3 p-3" style="width: 15%">
-                <div id="card-body-2">
-                    <h5 class="card-title">Card 2</h5>
-                    <img src="" alt="weather icon" class="w-icon">
-                    <div class="card-body">
-                        text
-                    </div>
-                    <div class="card-body">
-                        text
-                    </div>
-                    <div class="card-body">
-                        text
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-3 p-3" style="width: 15%">
-                <div id="card-body-3">
-                    <h5 class="card-title">Card 3</h5>
-                    <img src="" alt="weather icon" class="w-icon">
-                    <div class="card-body">
-                        text
-                    </div>
-                    <div class="card-body">
-                        text
-                    </div>
-                        text
-                    </div>
-                    <div class="card-body">
-                        text
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-3 p-3" style="width: 15%">
-                <div id="card-body-4">
-                    <h5 class="card-title">Card 4</h5>
-                    <img src="" alt="weather icon" class="w-icon">
-                    <div class="card-body">
-                        text
-                    </div>
-                    <div class="card-body">
-                        text
-                    </div>
-                    <div class="card-body">
-                        text
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-3 p-3" style="width: 15%">
-                <div id="card-body-5">
-                    <h5 class="card-title">Card 5</h5>
-                    <img src="" alt="weather icon" class="w-icon">
-                    <div class="card-body">
-                        text
-                    </div>
-                    <div class="card-body">
-                        text
-                    </div>
-                    <div class="card-body">
-                        text
-                    </div>
-                </div>
-            </div>
-        </div>
-    <div class="container-sm">
+</div>
+</div>
+    <div class="container-sm-bottom">
         <img src="images/Skyline.jpg" alt="City Skyline Sunset" style="width: 100%; height: auto;">
     </div>
 </div>

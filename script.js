@@ -1,7 +1,8 @@
+//TODO: Data continues to load instead of replacing current data, icon won't load 
+
 let weatherURL = 'http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit={1}&appid={API key}';
 let apiKey = '35c625d915571ffc550721e2286046d0';
-let weatherIcons = 'https://openweathermap.org/img/wn/10d@2x.png'
-let fiveDay = 'api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}'
+// let weatherIcons = 'https://openweathermap.org/img/wn/{icon}@2x.png'
 let citySearch = [];
 let today = dayjs().date();
 let newCity = document.getElementById("city-name");
@@ -14,51 +15,32 @@ searchButton.addEventListener ("click", function(event) {
     var newSearch = newCity.value.trim();
 
     //parse the data from localStorage, if no data it will return an empty array
-    var cityList = JSON.parse(localStorage.getItem("city")) || [];
+    // var cityList = JSON.parse(localStorage.getItem("city")) || [];
 
-    //add city to array
-    cityList.push(newSearch);
+    // //add city to array
+    // cityList.push(newSearch);
 
-    //save city array as a string
-    localStorage.setItem("city", JSON.stringify(cityList));
+    // //save city array as a string
+    // localStorage.setItem("city", JSON.stringify(cityList));
 
     //display localStorage  
-document.getElementById('city-search-button').value = window.localStorage['display'];
+// document.getElementById('city-search-button').value = window.localStorage['display'];
 
-    getApi();
+    getApi(newSearch);
     console.log("submit clicked");
+    // let cityStored = JSON.parse(localStorage.getItem('city')) || [];
+
+// for (var i=0; i<cityStored.length; i++) {
+//     var city = cityStored[i];
+//     console.log(city);
+//     var cityButton = document.createElement('button');
+//     cityButton.innerHTML = city;
+//     document.getElementById('buttonlinks').appendChild(cityButton);
+
 });
-let cityStored = JSON.parse(localStorage.getItem('city')) || [];
 
-for (var i=0; i<cityStored.length; i++) {
-    var city = cityStored[i];
-    var cityButton = document.createElement('button');
-    cityButton.innerHTML = city;
-    document.getElementById('buttonlinks').appendChild(cityButton);
-}
-// // //save City search to localStorage
-// let buttonsLength = 0;
-
-// document.getElementById('city-list-button').addEventListener('click', function () {
-//    createButton();
-//    buttonsLength++;
-//    localStorage.setItem('buttonsLength', buttonsLength)
-//  });
-
-//  function createButton() {
-//    var button = document.createElement('button');
-//    button.innerHTML = 'click me';
-//    document.getElementById('buttonlinks').appendChild(button);
-//  }
-
-//  window.addEventListener('load', (event) => {
-//    buttonsLength = Number(localStorage.getItem('buttonsLength')) || 0;
-//    for (let i = 0; i < buttonsLength; i++) {
-//      createButton();
-//    }
-// });
-
-const showlinks = document.getElementById('city-list-button')
+const showlinks = document.getElementById
+('city-search-button');
 
 showlinks.addEventListener("click", function () {
   localStorage.setItem("showClicked", true)
@@ -69,13 +51,11 @@ function displayButtonInDom() {
   const showClicked = localStorage.getItem("showClicked")
   if (showClicked) {
   const button = document.createElement("button"); 
-  button.innerText = "click me"
-  document.getElementById("buttonlinks").appendChild(button);
+  button.innerHTML = newCity;
+  document.getElementById("history").appendChild(button);
   }
 }
 displayButtonInDom();
-
-
 
 
 function dayCurrent() {
@@ -83,46 +63,118 @@ function dayCurrent() {
     };
 dayCurrent();
 
-function getApi() {
-    var cityName = newCity.value.trim();
-    var requestUrl2 = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + "&units=imperial&appid=" + apiKey;
-fetch(requestUrl2).then(response => response.json()).then(data => {
-    console.log(data)
-   for(i=0; i<5; i++) {
-    document.getElementById('five' +(i+1)+"Temp").innerHTML ="Temp:" + Number(data.list[i].main.temp)+"°";
-   } 
-   for(i=0; i<5; i++) {
-    document.getElementById('five' +(i+1)+"Wind").innerHTML ="Wind:" + Number(data.list[i].wind.speed);
-   }
-   for(i=0; i<5; i++) {
-    document.getElementById('card-body-1' +(i+1)+"Humidity").innerHTML ="Humidity:" + Number(data.list[i].main.humidity);
-   }
-   for(i=0; i<5; i++) {
-    document.getElementById("img" +(i+1)).src="https://openweathermap.org/img/wn/10d@2x.png" + data.list[i].weather[0].icon +".png";
-   }
-})
+function displayWeather(data) {
+    console.log(data);
+   
+    // var cityList = JSON.parse(localStorage.getItem("city")) || [];
 
-.catch()
+    //add city to array
+    // cityList.push(data.name);
+
+    //save city array as a string
+    // localStorage.setItem('city', JSON.stringify(cityList));
+    // for (var i=0; i<=cityList.length; i++) {
+    //     var city = cityList[i];
+    //     console.log('city: ', city);
+    //     var cityButton = document.createElement('button');
+    //     cityButton.innerHTML = city;
+    //     cityButton.setAttribute("id", city);
+    //     document.getElementById("history").appendChild(cityButton);
+    // }
+    // const currentForecast = data.main;
+    const currentDiv = document.getElementById('currentDay');
+
+    const container = document.createElement('div');
+    container.innerHTML = (data.name);
+    const icon = document.getElementById('weather-icon');
+    icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
+    container.appendChild(icon);
+    currentDiv.appendChild(container);
+
+
+    const windDiv = document.getElementById('wind');
+
+    const container2 = document.createElement('div');
+    container2.innerHTML = ("Wind: ", data.wind.speed);
+    windDiv.appendChild(container2);
+
+    const tempDiv = document.getElementById('temp');
+
+    const container3 = document.createElement('div');
+    container3.innerHTML = (data.main.temp + "°F");
+    tempDiv.appendChild(container3);
+
+    const humidDiv = document.getElementById('humid');
+    
+    const container4 = document.createElement('div');
+    container4.innerHTML = (data.main.humidity);
+    humidDiv.appendChild(container4);
+
 }
-getApi();
 
-const day =new Date();
-const daysWeek =["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-function dateCheck(day){
-    if(day +dateCheck.getDay() > 6){
-        return day +dateCheck.getDay()-7;
-    }
-    else{
-return day +dateCheck.getDay();
-    }
+function getApi(city) {
+    var requestUrl2 = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
+
+    fetch(requestUrl2)
+        .then((response) =>{
+            if(response.ok) {
+                return response.json();
+            }else {
+                throw new Error("Unable to retrieve data");
+            }
+        })
+        .then(data => {
+            fiveDay(data.coord.lat, data.coord.lon);
+            displayWeather(data);
+        })
+
+        .catch((error) => console.error("Fetch error:", error));
 }
 
-for(i=0; i<5; i++){
-    document.getElementById('five'+(i+1)).innerHTML = daysWeek[dateCheck[i]];
-}
+function fiveDay(lat, lon) {
+    const fiveDayUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`; 
+    fetch(fiveDayUrl).then(response => response.json()).then(data => {
+        console.log(data);
+       for(i=0; i<5; i++) {
+        document.getElementById('Day-1' +(i+1)+"Temp").innerHTML =("Temp:" + data.list[].main.temp + "°");
+       } 
+       for(i=0; i<5; i++) {
+        document.getElementById('five' +(i+1)+"Wind").innerHTML ="Wind:" + Number(data.list[i].wind.speed);
+        document.getElementById('card-body-1' +(i+1)+"Humidity").innerHTML ="Humidity:" + Number(data.list[i].main.humidity);
+        document.getElementById("img" +(i+1)).src=`https://openweathermap.org/img/wn/${data.list[0].weather.icon}@2x.png` + data.list[i].weather[0].icon +".png";
+       }
+    });
+   
+};
+fiveDay();
 
 
 
 
-dateCheck();
+// .catch()
+// }
+// getApi();
+
+// displayWeather();
+
+// const day =new Date();
+// const daysWeek =["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+// function dateCheck(day){
+//     if(day +dateCheck.getDay() > 6){
+//         return day +dateCheck.getDay()-7;
+//     }
+//     else{
+// return day +dateCheck.getDay();
+//     }
+// }
+
+// for(i=0; i<5; i++){
+//     document.getElementById('five'+(i+1)).innerHTML = daysWeek[dateCheck[i]];
+// }
+
+
+
+
+// dateCheck();
