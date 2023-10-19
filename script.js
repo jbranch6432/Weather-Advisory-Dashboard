@@ -133,17 +133,21 @@ function getApi(city) {
 }
 
 function fiveDay(lat, lon) {
+    const arr = [];
     const fiveDayUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`; 
     fetch(fiveDayUrl).then(response => response.json()).then(data => {
-        console.log(data, "what's here");
-       for(i=0; i<5; i++) {
-        document.getElementById('temp-1' +(i+1)).innerHTML =("Temp:" + data.list[0].main.temp + "°");
+        console.log(data);
+       for(i=0; i<arr.length; i+=8) {
+        document.getElementById('temp-' +(i+1)).innerHTML =("Temp:" + data.list[i].main.temp + "°");
+        // document.getElementById('wind-' +(i+1)+"Wind").innerHTML ="Wind:" + (data.list[0].wind.speed);
+        // document.getElementById('humid-' +(i+1)+"Humidity").innerHTML ="Humidity:" + (data.list[0].main.humidity);
+        // document.getElementById('icon-' +(i+1)).src=`https://openweathermap.org/img/wn/${data.list[0].weather.icon}@2x.png` + data.list[i].weather[0].icon +".png";
        } 
-       for(i=0; i<5; i++) {
-        document.getElementById('five' +(i+1)+"Wind").innerHTML ="Wind:" + Number(data.list[1].wind.speed);
-        document.getElementById('card-body-1' +(i+1)+"Humidity").innerHTML ="Humidity:" + Number(data.list[i].main.humidity);
-        document.getElementById("img" +(i+1)).src=`https://openweathermap.org/img/wn/${data.list[0].weather.icon}@2x.png` + data.list[i].weather[0].icon +".png";
-       }
+    //    for(i=0; i<5; i++) {
+    //     document.getElementById('wind-' +(i+1)+"Wind").innerHTML ="Wind:" + (data.list[0].wind.speed);
+        // document.getElementById('humid-' +(i+1)+"Humidity").innerHTML ="Humidity:" + (data.list[0].main.humidity);
+        // document.getElementById('icon-' +(i+1)).src=`https://openweathermap.org/img/wn/${data.list[0].weather.icon}@2x.png` + data.list[i].weather[0].icon +".png";
+       
     });
    
 };
