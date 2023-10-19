@@ -1,6 +1,6 @@
 //TODO: Data continues to load instead of replacing current data, icon won't load 
 
-let weatherURL = 'http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit={1}&appid={API key}';
+let weatherURL = 'http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit=1&appid={API key}';
 let apiKey = '35c625d915571ffc550721e2286046d0';
 // let weatherIcons = 'https://openweathermap.org/img/wn/{icon}@2x.png'
 let citySearch = [];
@@ -64,7 +64,7 @@ function dayCurrent() {
 dayCurrent();
 
 function displayWeather(data) {
-    console.log(data);
+    console.log(data, "What data");
    
     // var cityList = JSON.parse(localStorage.getItem("city")) || [];
 
@@ -115,7 +115,7 @@ function displayWeather(data) {
 
 function getApi(city) {
     var requestUrl2 = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
-
+    console.log(city, "The city");
     fetch(requestUrl2)
         .then((response) =>{
             if(response.ok) {
@@ -125,7 +125,7 @@ function getApi(city) {
             }
         })
         .then(data => {
-            fiveDay(data.coord.lat, data.coord.lon);
+            fiveDay(data.city.coord.lat, data.city.coord.lon);
             displayWeather(data);
         })
 
@@ -135,12 +135,12 @@ function getApi(city) {
 function fiveDay(lat, lon) {
     const fiveDayUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`; 
     fetch(fiveDayUrl).then(response => response.json()).then(data => {
-        console.log(data);
+        console.log(data, "what's here");
        for(i=0; i<5; i++) {
-        document.getElementById('Day-1' +(i+1)+"Temp").innerHTML =("Temp:" + data.list[].main.temp + "°");
+        document.getElementById('Day-1' +(i+1)+"Temp").innerHTML =("Temp:" + data.list[0].main.temp + "°");
        } 
        for(i=0; i<5; i++) {
-        document.getElementById('five' +(i+1)+"Wind").innerHTML ="Wind:" + Number(data.list[i].wind.speed);
+        document.getElementById('five' +(i+1)+"Wind").innerHTML ="Wind:" + Number(data.list[1].wind.speed);
         document.getElementById('card-body-1' +(i+1)+"Humidity").innerHTML ="Humidity:" + Number(data.list[i].main.humidity);
         document.getElementById("img" +(i+1)).src=`https://openweathermap.org/img/wn/${data.list[0].weather.icon}@2x.png` + data.list[i].weather[0].icon +".png";
        }
