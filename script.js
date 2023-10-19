@@ -125,7 +125,7 @@ function getApi(city) {
             }
         })
         .then(data => {
-            fiveDay(data.city.coord.lat, data.city.coord.lon);
+            fiveDay(data.coord.lat, data.coord.lon);
             displayWeather(data);
         })
 
@@ -137,7 +137,7 @@ function fiveDay(lat, lon) {
     fetch(fiveDayUrl).then(response => response.json()).then(data => {
         console.log(data, "what's here");
        for(i=0; i<5; i++) {
-        document.getElementById('Day-1' +(i+1)+"Temp").innerHTML =("Temp:" + data.list[0].main.temp + "°");
+        document.getElementById('temp-1' +(i+1)).innerHTML =("Temp:" + data.list[0].main.temp + "°");
        } 
        for(i=0; i<5; i++) {
         document.getElementById('five' +(i+1)+"Wind").innerHTML ="Wind:" + Number(data.list[1].wind.speed);
