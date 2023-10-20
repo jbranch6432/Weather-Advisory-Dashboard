@@ -1,5 +1,5 @@
 
-let weatherURL = 'http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit=1&appid={API key}';
+let weatherURL = 'https://api.openweathermap.org/geo/1.0/direct?q={city name}&limit=1&appid={API key}';
 let apiKey = '35c625d915571ffc550721e2286046d0';
 let today = dayjs().date();
 let newCity = document.getElementById("city-name");
@@ -98,7 +98,7 @@ function getApi(city, fromHistory) {
 
 function fiveDay(lat, lon) {
 
-    const fiveDayUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`; 
+    const fiveDayUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`; 
 
     fetch(fiveDayUrl).then(response => response.json()).then(data => {
         console.log(data);
