@@ -71,7 +71,7 @@ function displayWeather(data) {
 
 
 function getApi(city, fromHistory) {
-    var requestUrl2 = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
+    var requestUrl2 = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
     fetch(requestUrl2)
         .then((response) =>{
 
